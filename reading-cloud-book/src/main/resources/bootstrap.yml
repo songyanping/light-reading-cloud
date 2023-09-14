@@ -7,6 +7,7 @@ spring:
     nacos:
       # 配置中心
       config:
+        enabled: false
         server-addr: 127.0.0.1:8848
         file-extension: yml
         refresh: true
@@ -15,5 +16,8 @@ spring:
 
       # 注册中心
       discovery:
-        server-addr: 127.0.0.1:8848
-        namespace: 4d109a4d-f34d-4e86-9e39-c2d36db24b00
+        enabled: true
+        server-addr: 172.16.233.124:8848
+        namespace: 4fcb001c-adff-41fc-9bd7-a2039393c04a
+        username: nacos
+        password: nacos

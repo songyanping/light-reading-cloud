@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reading-cloud-gateway
+  namespace: light-reading
+  labels:
+    app: reading-cloud-gateway
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reading-cloud-gateway
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: reading-cloud-gateway
+        version: v1
+    spec:
+      containers:
+        - image: docker.io/song1206/reading-cloud-gateway:v1
+          name: reading-cloud-gateway
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8010
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reading-cloud-gateway
+  namespace: light-reading
+spec:
+  ports:
+    - port: 8010
+      targetPort: 8010
+  selector:
+    app: reading-cloud-gateway
+  type:
+    ClusterIP
